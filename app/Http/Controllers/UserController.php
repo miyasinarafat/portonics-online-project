@@ -6,11 +6,12 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 final class UserController extends Controller
 {
     /**
-     * Get token via credentials
+     * Get token via credentials.
      *
      * @param Request $request
      * @return JsonResponse
@@ -33,6 +34,39 @@ final class UserController extends Controller
     }
 
     /**
+     * Authenticate user.
+     *
+     * @return JsonResponse
+     */
+    public function me(): JsonResponse
+    {
+        return response()->json(['user' => auth()->user()]);
+    }
+
+    /**
+     * Log the user out, Invalidate the token.
+     *
+     * @return JsonResponse
+     */
+    public function logout(): JsonResponse
+    {
+        JWTAuth::parseToken();
+        JWTAuth::invalidate(true);
+
+        return response()->json(['message' => 'Successfully logged out']);
+    }
+
+    /**
+     * Refresh a token.
+     *
+     * @return JsonResponse
+     */
+    public function refresh(): JsonResponse
+    {
+        return $this->respondWithToken(auth()->refresh());
+    }
+
+    /**
      * Get the token array structure.
      *
      * @param string $token
@@ -44,8 +78,8 @@ final class UserController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60 * 24,
             'user' => auth()->user(),
-            'expires_in' => auth()->factory()->getTTL() * 60 * 24
         ]);
     }
 }
