@@ -8,10 +8,6 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('portwallet', function (Request $request) use ($router) {
-    dd($request);
-});
-
 $router->post('login', ['uses' => 'UserController@login']);
 
 /*** v1 group */
@@ -24,4 +20,12 @@ $router->group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () use (
     $router->group(['prefix' => 'orders'], function () use ($router) {
         $router->post('/', ['uses' => 'OrderController@create']);
     });
+});
+
+$router->group(['prefix' => 'portwallet'], function () use ($router) {
+    $router->get('/', function (Request $request) use ($router) {
+        response()->json(['message' => 'success']);
+    });
+
+    $router->post('/ipn', ['uses' => 'IpnHandlerController']);
 });
