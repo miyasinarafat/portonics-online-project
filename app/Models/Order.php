@@ -6,7 +6,6 @@ use App\Enums\OrderStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Order extends Model
 {
@@ -19,6 +18,7 @@ class Order extends Model
      */
     protected $fillable = [
         'user_id',
+        'product_id',
         'order_time',
         'order_code',
         'amount',
@@ -45,15 +45,10 @@ class Order extends Model
     }
 
     /**
-     * @return BelongsToMany
+     * @return BelongsTo
      */
-    public function products(): BelongsToMany
+    public function product(): BelongsTo
     {
-        return $this->belongsToMany(
-            Product::class,
-            'order_items',
-            'order_id',
-            'product_id',
-        );
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 }
