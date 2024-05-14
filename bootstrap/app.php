@@ -99,6 +99,8 @@ $app->register(App\Providers\AuthServiceProvider::class);
 
 // Packages
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+$app->register(\Laravel\Sail\SailServiceProvider::class);
+//$app->register(\Histel\LumenSail\LumenSailServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
