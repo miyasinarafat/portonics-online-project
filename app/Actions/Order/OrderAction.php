@@ -7,6 +7,7 @@ use App\Enums\OrderStatusEnum;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use Carbon\Carbon;
 use DateMalformedStringException;
 use Illuminate\Support\Arr;
 
@@ -32,7 +33,7 @@ class OrderAction
         $order = Order::query()->create([
             'user_id' => $customerId,
             'product_id' => $productId,
-            'order_time' => now(),
+            'order_time' => Carbon::now(),
             'order_code' => $orderCode,
             'amount' => $product->price,
             'currency' => $product->currency,
