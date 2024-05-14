@@ -20,4 +20,8 @@ class Product extends Model
         'price',
         'currency',
     ];
+
+    protected $casts = [
+        'price' => 'float',
+    ];
 }
