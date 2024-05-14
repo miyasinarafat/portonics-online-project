@@ -1,26 +1,30 @@
-# Lumen PHP Framework
+# Portonics Limited Project Test
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/lumen)](https://packagist.org/packages/laravel/lumen-framework)
+## Prerequisites
+This software needs to be installed in your system before proceeding next step:
+- Docker
+- Docker Compose
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## Tools
+- PHP 8.2
+- MySQL 8.0
+- Redis
+- `friendsofphp/php-cs-fixer`: PSR-12
+- `phpunit/phpunit`: Unit testing
 
-> **Note:** In the years since releasing Lumen, PHP has made a variety of wonderful performance improvements. For this reason, along with the availability of [Laravel Octane](https://laravel.com/docs/octane), we no longer recommend that you begin new projects with Lumen. Instead, we recommend always beginning new projects with [Laravel](https://laravel.com).
+## Installation
+Run these commands one by one from root directory to up and running this PHP project with docker compose with dummy data:
+- `docker compose build --no-cache`
+- `docker compose up -d`
+- `docker compose exec portonics-online-project.test composer install`
+- `docker compose exec portonics-online-project.test php artisan migrate`
+- `docker compose exec portonics-online-project.test php artisan db:seed`
 
-## Official Documentation
+## Usage
+This application will be up and running to this address: http://localhost/. You may visit that local address to test the PHP application from web interface or use this postman collection: https://documenter.getpostman.com/view/1974679/2sA3JQ5L9B.
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
-
-## Contributing
-
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Testing
+```bash
+docker compose exec application composer test
+```
+![305182207-49175824-0f14-4aad-977f-01d1360b3e24 (1)](https://github.com/miyasinarafat/url-shortening/assets/16781160/a2021043-1f8e-48ee-9119-a6743c19bbff)
