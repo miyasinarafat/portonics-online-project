@@ -15,7 +15,8 @@ class Authenticate
      * @return void
      */
     public function __construct(protected Auth $auth)
-    {}
+    {
+    }
 
     /**
      * Handle an incoming request.

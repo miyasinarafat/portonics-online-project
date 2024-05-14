@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Order\OrderAction;
 use App\Enums\OrderStatusEnum;
 use App\Models\Order;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\ValidationException;
 
 final class IpnHandlerController extends Controller
 {

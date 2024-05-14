@@ -24,8 +24,7 @@ final class InvoiceCreateData
         string $reference,
         Product $product,
         User $customer,
-    ): self
-    {
+    ): self {
         return new self(
             $reference,
             $product,
@@ -61,7 +60,7 @@ final class InvoiceCreateData
                         'state' => $this->customer->address['state'],
                         'zipcode' => $this->customer->address['zipcode'],
                         'country' => $this->customer->address['country'],
-                    ]
+                    ],
                 ],
             ],
         ];

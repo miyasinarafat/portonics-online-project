@@ -21,12 +21,12 @@ final class OrderController extends Controller
             'customer_id' => [
                 'required',
                 'integer',
-                Rule::exists('users', 'id')->where('is_admin', 0)
+                Rule::exists('users', 'id')->where('is_admin', 0),
             ],
             'product_id' => [
                 'required',
                 'integer',
-                Rule::exists('products', 'id')
+                Rule::exists('products', 'id'),
             ],
         ]);
 
