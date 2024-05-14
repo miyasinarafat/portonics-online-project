@@ -24,6 +24,14 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
+            'phone' => $this->faker->unique()->phoneNumber,
+            'address' => [
+                'street' => 'Dhanmondi',
+                'city' => 'Dhaka',
+                'state' => 'Dhaka',
+                'zipcode' => 1209,
+                'country' => 'BD',
+            ]
         ];
     }
 }
