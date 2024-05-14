@@ -30,6 +30,13 @@ final class UserController extends Controller
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
+        if (! auth()->user()->is_admin) {
+            JWTAuth::setToken($token);
+            JWTAuth::invalidate(true);
+
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         return $this->respondWithToken($token);
     }
 
