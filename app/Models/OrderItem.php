@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class OrderItem extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -15,13 +17,7 @@ class Product extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'details',
-        'price',
-        'currency',
-    ];
-
-    protected $casts = [
-        'price' => 'float',
+        'order_id',
+        'product_id',
     ];
 }
